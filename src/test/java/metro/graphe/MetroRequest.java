@@ -1,16 +1,16 @@
-package fr.ul.miage.bipwac.gl.metro.graphe;
+package metro.graphe;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 public class MetroRequest {
 
-	private static final java.util.logging.Logger LOG = Logger.getLogger(MetroRequest.class.getName());
+	private static final Logger LOG = Logger.getLogger(MetroRequest.class.getName());
 
 	private MetroParisien metro = null;
 	private String fileName = null;
@@ -18,14 +18,14 @@ public class MetroRequest {
 	// Constructor
 	public MetroRequest(String fileName) {
 		setFileName(fileName);
-		setMetroParisien(getMetroByJSON());
+		setMetroParisien(getMetroByJSON(fileName));
 	}
 
 	// Functionnalities
-	public MetroParisien getMetroByJSON() {
+	public MetroParisien getMetroByJSON(String fileName) {
 		// Lecture de la ressource
 		String result = null;
-		URL filePath = MetroRequest.class.getResource("/" + this.fileName);
+		URL filePath = MetroRequest.class.getResource("/" + fileName);
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new InputStreamReader(filePath.openConnection().getInputStream()));
@@ -36,7 +36,6 @@ public class MetroRequest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		result = result.substring(4); // On enlève null
 		System.out.println(result);
 
 		// Set up de l'objet

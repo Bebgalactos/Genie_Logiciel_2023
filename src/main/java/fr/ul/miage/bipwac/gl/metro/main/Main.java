@@ -12,7 +12,7 @@ public class Main {
 		//Set up des variables
 		String jsonFileName = "graph.json";
 		MetroRequest metro = new MetroRequest(jsonFileName);
-		System.out.println(metro.toString());
+		System.out.println(metro.getMetroParisien().getNodes());
 	}
 	
 }

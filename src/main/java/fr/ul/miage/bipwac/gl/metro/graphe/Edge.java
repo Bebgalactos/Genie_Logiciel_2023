@@ -9,7 +9,7 @@ public class Edge {
 
     @SerializedName("source")
     @Expose
-    private Integer source;
+    private Long source;
     @SerializedName("target")
     @Expose
     private Long target;
@@ -26,11 +26,11 @@ public class Edge {
     @Expose
     private String color;
 
-    public Integer getSource() {
+    public Long getSource() {
         return source;
     }
 
-    public void setSource(Integer source) {
+    public void setSource(Long source) {
         this.source = source;
     }
 
