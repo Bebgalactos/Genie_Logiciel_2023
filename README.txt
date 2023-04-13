@@ -10,3 +10,6 @@
 * Thomas PISAN
 * Najat WADDIZ
 * Jaber BENKIRANE
+
+# WorkLogs :
+* DEV#01 : Modélisation Lucas et Thomas
