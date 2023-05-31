@@ -30,13 +30,11 @@ public class User {
     public void getLongitudeRandom(){
         Random r = new Random();
         this.userLongitude = 2.225828 + (2.469920 - 2.225828) * r.nextDouble();
-        System.out.println(this.userLongitude);
     }
 
     public void getLatitudeRandom(){
         Random r = new Random();
         this.userLatitude = 48.815573 + (48.902145 - 48.815573) * r.nextDouble();
-        System.out.println(this.userLatitude);
     }
 
 }
