@@ -96,7 +96,7 @@ public class TimeCountTest {
         metro.setEdges(edges);
         /*
         On obtient le trajet :
-            1 -------ligne1------- 2 -------ligne1------- 3 -------ligne2------- 4
+            1 -------ligne1------- 2 -------ligne1------- 3          5 -------ligne2------- 4
         Soit Un passage dans 4 stations et 2 lignes différentes
          */
         // On cherche à calculer 3 déplacements entre station et 2 changements de ligne (entrée en l1 et passage en l2)
