@@ -25,6 +25,8 @@ public class Edge {
     @SerializedName("color")
     @Expose
     private String color;
+    @Expose
+    private boolean accident = false;
 
     public Long getSource() {
         return source;
@@ -73,6 +75,13 @@ public class Edge {
     public void setColor(String color) {
         this.color = color;
     }
+    public boolean isAccident() {
+        return accident;
+    }
+
+    public void setAccident(boolean accident) {
+        this.accident = accident;
+    }
 
     @Override
     public String toString() {
@@ -101,6 +110,10 @@ public class Edge {
         sb.append("color");
         sb.append('=');
         sb.append(((this.color == null)?"<null>":this.color));
+        sb.append(',');
+        sb.append("accident");
+        sb.append('=');
+        sb.append(this.accident);
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');

@@ -31,6 +31,8 @@ public class Node {
     @SerializedName("visited")
     @Expose
     private Boolean visited;
+    @Expose
+    private boolean accident = false;
 
     public Long getId() {
         return id;
@@ -96,6 +98,14 @@ public class Node {
         this.visited = visited;
     }
 
+    public boolean isAccident() {
+        return accident;
+    }
+
+    public void setAccident(boolean accident) {
+        this.accident = accident;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -131,6 +141,10 @@ public class Node {
         sb.append("visited");
         sb.append('=');
         sb.append(((this.visited == null)?"<null>":this.visited));
+        sb.append(',');
+        sb.append("accident");
+        sb.append('=');
+        sb.append(this.accident);
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
