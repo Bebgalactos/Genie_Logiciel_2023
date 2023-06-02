@@ -6,7 +6,9 @@ import java.util.Optional;
 public class MetroStopService {
 
     /**
-     * Recherche la station de métro la plus proche dans un radius de 1 km et augmente jusqu'à 5km si aucune trouvée
+     * Fonction permettant de trouver la station de metro la plus proche d'un utilisateur
+     * @param user User qui cherche la station la plus proche
+     * @param metroParisien Graphe de metro sur lequel on veut chercher la station la plus proche
      */
     public void nearestMetro(User user, MetroParisien metroParisien) {
         double radius = 1.0;
@@ -24,12 +26,28 @@ public class MetroStopService {
         }
     }
 
+    /**
+     * Fonction permettant de trouver la station de metro la plus proche d'un point donné
+     * @param metroParisien Graphe de metro sur lequel on veut chercher la station la plus proche
+     * @param latitude latitude du point de recherche
+     * @param longitude longitude du point de recherche
+     * @param radiusInKm radius limite pour la recherche autour du point
+     * @return la station de metro la plus proche d'un point donné
+     */
     private Optional<Node> findNearestMetroStop(MetroParisien metroParisien, double latitude, double longitude, double radiusInKm) {
         return metroParisien.getNodes().stream()
                 .filter(node -> distanceBetweenPoints(latitude, longitude, node.getLatitude(), node.getLongitude()) <= radiusInKm)
                 .min(Comparator.comparingDouble(node -> distanceBetweenPoints(latitude, longitude, node.getLatitude(), node.getLongitude())));
     }
 
+    /**
+     * Fonction permettant de calculer la distance entre deux points
+     * @param lat1 latitude du premier point
+     * @param lon1 longitude du premier point
+     * @param lat2 latitude du second point
+     * @param lon2 longitude du second point
+     * @return un long représentant la distance
+     */
     private double distanceBetweenPoints(double lat1, double lon1, double lat2, double lon2) {
         final int R = 6371; // radius de la terre en km
 
