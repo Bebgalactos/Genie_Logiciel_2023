@@ -71,8 +71,8 @@ public class MetroStopServiceTest {
      */
     public void testNearestMetro_NoMetroWithinRadius() {
         when(metroParisien.getNodes()).thenReturn(Arrays.asList());
-        when(user.getUserLatitude()).thenReturn(48.857);
-        when(user.getUserLongitude()).thenReturn(2.351);
+        when(user.getUserLatitude()).thenReturn(46.4113338); //coordonnées lointaine en Mongolie
+        when(user.getUserLongitude()).thenReturn(111.5976808);
         metroStopService.nearestMetro(user, metroParisien);
         verify(metroParisien, times(5)).getNodes();
         verify(user, times(5)).getUserLatitude();
