@@ -13,8 +13,10 @@ public class MetroStopService {
      * Recherche la station de métro la plus proche dans un radius de 1 km et augmente jusqu'à 5km si aucune trouvée
      */
     public void nearestMetro(User user, MetroParisien metroParisien) {
+        if (user == null || metroParisien == null){
+            return;
+        }
         double radius = 1.0;
-
         Optional<Node> nearestMetroStop = Optional.empty();
         while (radius <= 5.0 && nearestMetroStop.isEmpty()) {
             nearestMetroStop = findNearestMetroStop(metroParisien, user.getUserLatitude(), user.getUserLongitude(), radius);
