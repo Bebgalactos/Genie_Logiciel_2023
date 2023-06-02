@@ -8,16 +8,10 @@ public class Dijkstra {
         // Construis le graphe pour Dijkstra
         Map<Long, List<Edge>> graph = this.changeStructure(metro);
 
-        Map<Long, Long> distances = new HashMap<>();
-        Map<Long, Long> previous = new HashMap<>();
+        // Initialisations des variables de parcours
+        Map<Long, Long> distances = distanceInitialize(graph);
+        Map<Long, Long> previous = previousInitialize(graph);
         PriorityQueue<Long> queue = new PriorityQueue<>(Comparator.comparingLong(distances::get));
-
-        // Initialize distances and previous nodes
-        for (Long node : graph.keySet()) {
-            distances.put(node, Long.MAX_VALUE);
-            previous.put(node, null);
-        }
-
         distances.put(source, Long.parseLong(String.valueOf(0)));
         queue.offer(source);
 
@@ -82,5 +76,24 @@ public class Dijkstra {
             graph.put(node.getId(), edgesConcerned);
         }
         return graph;
+    }
+
+    public Map<Long, Long> distanceInitialize(Map<Long, List<Edge>> graph) {
+        Map<Long, Long> distances = new HashMap<>();
+
+        // Initialize distances and previous nodes
+        for (Long node : graph.keySet()) {
+            distances.put(node, Long.MAX_VALUE);
+        }
+        return distances;
+    }
+    public Map<Long, Long> previousInitialize(Map<Long, List<Edge>> graph) {
+        Map<Long, Long> previous = new HashMap<>();
+
+        // Initialize distances and previous nodes
+        for (Long node : graph.keySet()) {
+            previous.put(node, null);
+        }
+        return previous;
     }
 }
