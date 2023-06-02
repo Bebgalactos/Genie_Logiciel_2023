@@ -20,16 +20,15 @@ public class UserTest {
     @Test
     public void rangeLatitude(){
         User u = new User();
-        assertTrue(u.getUserLatitude()>=48.815573);
-        assertTrue(u.getUserLatitude()<=48.902145);
+        assertTrue(u.getUserLatitude()>=48.815573 && u.getUserLatitude()<=48.902145);
     }
 
     @Test
     public void rangeLongitude(){
         User u = new User();
-        assertTrue(u.getUserLongitude()>=2.225828);
-        assertTrue(u.getUserLongitude()<=2.469920);
+        assertTrue(u.getUserLongitude()>=2.225828 && u.getUserLongitude()<=2.469920);
     }
+
 
 
 
