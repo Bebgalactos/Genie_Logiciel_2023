@@ -25,10 +25,6 @@ public class Dijkstra {
         while (!queue.isEmpty()) {
             Long current = queue.poll();
 
-            if (current.equals(destination)) {
-                break; // Reached the destination, stop the search
-            }
-
             if (distances.get(current) == Long.MAX_VALUE) {
                 // Current node is not reachable, skip it
                 continue;
@@ -45,7 +41,7 @@ public class Dijkstra {
                     nextNode = neighbor.getSource();
                 }
 
-                Double distanceToNextNode = distances.get(current) + 1.5; // Assuming edge weight is 1
+                Double distanceToNextNode = distances.get(current) + 1.5;
 
                 if (distanceToNextNode < distances.get(nextNode)) {
                     distances.put(nextNode, distanceToNextNode);

@@ -54,24 +54,24 @@ public class DijkstraTest {
         Soit Un passage dans 4 stations et 2 lignes différentes
          */
         Map<Long, List<Edge>> expected = new HashMap<>(){{
-            put(Long.parseLong("1"), (new ArrayList<>(Arrays.asList(edge1))));
+            put(Long.parseLong("1"), (new ArrayList<>(List.of(edge1))));
             put(Long.parseLong("2"), new ArrayList<>(Arrays.asList(edge1, edge2)));
             put(Long.parseLong("3"), new ArrayList<>(Arrays.asList(edge2, edge3)));
-            put(Long.parseLong("4"), new ArrayList<>(Arrays.asList(edge3)));
+            put(Long.parseLong("4"), new ArrayList<>(List.of(edge3)));
         }};
         Map<Long, List<Edge>> actual = (new Dijkstra()).changeStructure(metro);
         assertAll(
                 () -> assertArrayEquals(
-                        expected.get(Long.parseLong("1")).stream().toArray(),
+                        expected.get(Long.parseLong("1")).toArray(),
                         actual.get(Long.parseLong("1")).toArray()),
                 () -> assertArrayEquals(
-                        expected.get(Long.parseLong("2")).stream().toArray(),
+                        expected.get(Long.parseLong("2")).toArray(),
                         actual.get(Long.parseLong("2")).toArray()),
                 () -> assertArrayEquals(
-                        expected.get(Long.parseLong("3")).stream().toArray(),
+                        expected.get(Long.parseLong("3")).toArray(),
                         actual.get(Long.parseLong("3")).toArray()),
                 () -> assertArrayEquals(
-                        expected.get(Long.parseLong("4")).stream().toArray(),
+                        expected.get(Long.parseLong("4")).toArray(),
                         actual.get(Long.parseLong("4")).toArray())
         );
     }
@@ -128,8 +128,8 @@ public class DijkstraTest {
         );
         List<Long> actual = (new Dijkstra()).findShortestPath(startPoint, endPoint, metro);
         assertArrayEquals(
-                expected.stream().toArray(),
-                actual.stream().toArray()
+                expected.toArray(),
+                actual.toArray()
         );
     }
 
@@ -168,9 +168,12 @@ public class DijkstraTest {
         Edge edge4 = new Edge();
         edge4.setSource(node1.getId());
         edge4.setTarget(node5.getId());
+        Edge edge5 = new Edge();
+        edge5.setSource(node5.getId());
+        edge5.setTarget(node4.getId());
 
-        List<Node> nodes = new ArrayList<>(Arrays.asList(node1, node2, node3, node4));
-        List<Edge> edges = new ArrayList<>(Arrays.asList(edge1, edge2, edge3));
+        List<Node> nodes = new ArrayList<>(Arrays.asList(node1, node2, node3, node4, node5));
+        List<Edge> edges = new ArrayList<>(Arrays.asList(edge1, edge2, edge3, edge4, edge5));
         MetroParisien metro = new MetroParisien();
         metro.setNodes(nodes);
         metro.setEdges(edges);
@@ -197,8 +200,8 @@ public class DijkstraTest {
         List<Long> actual = (new Dijkstra()).findShortestPath(startPoint, endPoint, metro);
         System.out.println(actual);
         assertArrayEquals(
-                expected.stream().toArray(),
-                actual.stream().toArray()
+                expected.toArray(),
+                actual.toArray()
         );
     }
 
@@ -266,8 +269,8 @@ public class DijkstraTest {
         edge8.setTarget(node4.getId());
         edge8.setLine(line5);
 
-        List<Node> nodes = new ArrayList<>(Arrays.asList(node1, node2, node3, node4));
-        List<Edge> edges = new ArrayList<>(Arrays.asList(edge1, edge2, edge3));
+        List<Node> nodes = new ArrayList<>(Arrays.asList(node1, node2, node3, node4, node5, node6, node7, node8));
+        List<Edge> edges = new ArrayList<>(Arrays.asList(edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8));
         MetroParisien metro = new MetroParisien();
         metro.setNodes(nodes);
         metro.setEdges(edges);
@@ -295,8 +298,8 @@ public class DijkstraTest {
         List<Long> actual = (new Dijkstra()).findShortestPath(startPoint, endPoint, metro);
         System.out.println(actual);
         assertArrayEquals(
-                expected.stream().toArray(),
-                actual.stream().toArray()
+                expected.toArray(),
+                actual.toArray()
         );
     }
 }
