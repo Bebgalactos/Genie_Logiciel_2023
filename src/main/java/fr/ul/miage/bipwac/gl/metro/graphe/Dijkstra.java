@@ -3,13 +3,20 @@ import java.util.*;
 
 public class Dijkstra {
 
-    private Map<Long, List<Edge>> graph;
+    public List<Long> findShortestPath(Long source, Long destination, MetroParisien metro) {
 
-    public Dijkstra(Map<Long, List<Edge>> graph) {
-        this.graph = graph;
-    }
+        // Construis le graphe pour Dijkstra
+        Map<Long, List<Edge>> graph = new HashMap<>();
+        for (Node node : metro.getNodes()) {
+            List<Edge> edgesConcerned = new ArrayList<>();
+            for(Edge edge : metro.getEdges()) {
+                if(edge.getSource().equals(node.getId()) || edge.getTarget().equals(node.getId())) {
+                    edgesConcerned.add(edge);
+                }
+            }
+            graph.put(node.getId(), edgesConcerned);
+        }
 
-    public List<Long> findShortestPath(Long source, Long destination) {
         Map<Long, Long> distances = new HashMap<>();
         Map<Long, Long> previous = new HashMap<>();
         PriorityQueue<Long> queue = new PriorityQueue<>(Comparator.comparingLong(distances::get));
@@ -20,7 +27,7 @@ public class Dijkstra {
             previous.put(node, null);
         }
 
-        distances.put(source, 0L);
+        distances.put(source, Long.parseLong(String.valueOf(0)));
         queue.offer(source);
 
         while (!queue.isEmpty()) {
@@ -36,9 +43,17 @@ public class Dijkstra {
             }
 
             List<Edge> neighbors = graph.get(current);
+            if (neighbors == null) neighbors = new ArrayList<Edge>();
 
             for (Edge neighbor : neighbors) {
-                Long nextNode = neighbor.getTarget();
+                Long nextNode;
+                if(neighbor.getSource() == current) {
+                    nextNode = neighbor.getTarget();
+                } else {
+                    nextNode = neighbor.getSource();
+                }
+
+                System.out.println(current + " " + nextNode);
                 Long distanceToNextNode = distances.get(current) + 1; // Assuming edge weight is 1
 
                 if (distanceToNextNode < distances.get(nextNode)) {
@@ -52,6 +67,8 @@ public class Dijkstra {
         // Reconstruct the shortest path
         List<Long> shortestPath = new ArrayList<>();
         Long current = destination;
+
+
 
         while (current != null) {
             shortestPath.add(current);

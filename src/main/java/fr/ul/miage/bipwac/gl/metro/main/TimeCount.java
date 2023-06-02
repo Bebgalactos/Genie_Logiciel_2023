@@ -12,9 +12,6 @@ public class TimeCount {
     public static final Double averageTravelTime = 1.5; // Temps moyen entre stations
     public static final Double averageTransitionEntryTime = 5.0; // Temps moyen de changements et de première entrée
 
-    // Constructeur
-    public TimeCount() {}
-
     // Fonctions
     public Double getTimeInMinutes(MetroParisien metro) {
         // Variables
@@ -60,6 +57,7 @@ public class TimeCount {
         return true;
     }
 
+    // Algorithme de recherche en largeur d'abord simplifié étant donné la structure des données (une ligne droite du départ à l'arrivée)
     public boolean isReachable(MetroParisien metro, Long startNodeId, Long targetNodeId) {
         // Vérification des nœuds de départ et d'arrivée
         Node startNode = getNodeById(metro, startNodeId, startNodeId).get(0);
@@ -85,7 +83,7 @@ public class TimeCount {
             if (!visited.contains(currentNode.getId())) {
                 visited.add(currentNode.getId());
 
-                // Explorer les nœuds voisins non visités
+                // Explorer les nœuds voisins non visités (pas besoin de se souvenir des edges visités puisque les points ne sont reliés que par un edge)
                 List<Edge> edges = getAdjacentEdges(metro, currentNode.getId());
                 for (Edge edge : edges) {
                     List<Node> neighbors = getNodeById(metro, edge.getTarget(), edge.getSource());

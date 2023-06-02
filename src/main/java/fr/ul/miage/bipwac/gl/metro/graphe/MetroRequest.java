@@ -37,7 +37,6 @@ public class MetroRequest {
 			e.printStackTrace();
 		}
 		result = result.substring(4); // On enlève null
-		System.out.println(result);
 
 		// Set up de l'objet
 		MetroParisien res = null;

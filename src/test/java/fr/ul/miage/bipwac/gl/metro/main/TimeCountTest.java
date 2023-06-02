@@ -14,6 +14,8 @@ import static fr.ul.miage.bipwac.gl.metro.main.TimeCount.*;
 
 public class TimeCountTest {
 
+    // tester les conditions aux limites
+    // ‣ paramètre null, tableau vide, valeurs max, min...
     @Test
     public void testManuallyCreatedGraph() {
         // Variables

@@ -1,6 +1,7 @@
 package fr.ul.miage.bipwac.gl.metro.main;
 
 import fr.ul.miage.bipwac.gl.metro.graphe.Edge;
+import fr.ul.miage.bipwac.gl.metro.graphe.MetroAccident;
 import fr.ul.miage.bipwac.gl.metro.graphe.MetroParisien;
 import fr.ul.miage.bipwac.gl.metro.graphe.Node;
 import org.junit.Test;
@@ -9,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static fr.ul.miage.bipwac.gl.metro.graphe.MetroAccident.removeEdgeAccident;
-import static fr.ul.miage.bipwac.gl.metro.graphe.MetroAccident.removeNodeAccident;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -44,7 +43,7 @@ public class MetroAccidentTest {
         metro.setNodes(nodes);
         metro.setEdges(edges);
 
-        MetroParisien res = removeNodeAccident(metro);
+        MetroParisien res = (new MetroAccident()).removeNodeAccident(metro);
 
         int expectedSize = 1;
         long expectedId = 1;
@@ -82,7 +81,7 @@ public class MetroAccidentTest {
         metro.setNodes(nodes);
         metro.setEdges(edges);
 
-        MetroParisien res = removeEdgeAccident(metro);
+        MetroParisien res = (new MetroAccident()).removeEdgeAccident(metro);
 
         int expectedSize = 1;
         String expectedId = "1 - 2";
