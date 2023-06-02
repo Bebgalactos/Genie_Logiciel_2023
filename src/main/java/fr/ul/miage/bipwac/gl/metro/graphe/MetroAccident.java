@@ -1,15 +1,15 @@
 package fr.ul.miage.bipwac.gl.metro.graphe;
 
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class MetroAccident {
 
+    /**
+     * Fonction permettant de retirer les nœuds accidentés d'un graphe (retire également les edges qui sont reliés aux nœuds supprimés)
+     * @param entry Graphe dont on veut retirer les nœuds accidentés
+     * @return Un nouveau graphe sans les nœuds accidentés et sans les edges qui y étaient reliés
+     */
     public MetroParisien removeNodeAccident(MetroParisien entry){
         MetroParisien mp = new MetroParisien();
         List<Node> noAccidents = new ArrayList<>();
@@ -34,16 +34,15 @@ public class MetroAccident {
         return mp;
     }
 
+    /**
+     * Fonction permettant de retirer les edges accidentés d'un graphe
+     * @param entry Graphe dont on veut retirer les edges accidentés
+     * @return Un nouveau graphe sans les edges accidentés
+     */
     public MetroParisien removeEdgeAccident(MetroParisien entry){
         MetroParisien mp = new MetroParisien();
         mp.setNodes(entry.getNodes());
         mp.setEdges(entry.getEdges().stream().filter(e -> !e.isAccident()).collect(Collectors.toList()));
         return mp;
-    }
-
-    private MetroParisien parseJson(String path) throws FileNotFoundException {
-        Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader(path));
-        return gson.fromJson(reader, MetroParisien.class);
     }
 }
