@@ -30,12 +30,13 @@ public class MetroAccident {
 
         mp.setNodes(noAccidents);
         mp.setEdges(entry.getEdges());
-        removeEdgeAccident(mp);
+        mp = (new MetroAccident()).removeEdgeAccident(mp);
         return mp;
     }
 
     public MetroParisien removeEdgeAccident(MetroParisien entry){
         MetroParisien mp = new MetroParisien();
+        mp.setNodes(entry.getNodes());
         mp.setEdges(entry.getEdges().stream().filter(e -> !e.isAccident()).collect(Collectors.toList()));
         return mp;
     }
