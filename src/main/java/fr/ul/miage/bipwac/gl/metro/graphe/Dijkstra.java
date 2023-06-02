@@ -6,16 +6,7 @@ public class Dijkstra {
     public List<Long> findShortestPath(Long source, Long destination, MetroParisien metro) {
 
         // Construis le graphe pour Dijkstra
-        Map<Long, List<Edge>> graph = new HashMap<>();
-        for (Node node : metro.getNodes()) {
-            List<Edge> edgesConcerned = new ArrayList<>();
-            for(Edge edge : metro.getEdges()) {
-                if(edge.getSource().equals(node.getId()) || edge.getTarget().equals(node.getId())) {
-                    edgesConcerned.add(edge);
-                }
-            }
-            graph.put(node.getId(), edgesConcerned);
-        }
+        Map<Long, List<Edge>> graph = this.changeStructure(metro);
 
         Map<Long, Long> distances = new HashMap<>();
         Map<Long, Long> previous = new HashMap<>();
@@ -77,5 +68,19 @@ public class Dijkstra {
 
         Collections.reverse(shortestPath);
         return shortestPath;
+    }
+
+    public Map<Long, List<Edge>> changeStructure(MetroParisien metro){
+        Map<Long, List<Edge>> graph = new HashMap<>();
+        for (Node node : metro.getNodes()) {
+            List<Edge> edgesConcerned = new ArrayList<>();
+            for(Edge edge : metro.getEdges()) {
+                if(edge.getSource().equals(node.getId()) || edge.getTarget().equals(node.getId())) {
+                    edgesConcerned.add(edge);
+                }
+            }
+            graph.put(node.getId(), edgesConcerned);
+        }
+        return graph;
     }
 }
