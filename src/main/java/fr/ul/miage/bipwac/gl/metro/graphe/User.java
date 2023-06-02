@@ -3,7 +3,7 @@ package fr.ul.miage.bipwac.gl.metro.graphe;
 import java.util.Random;
 
 /**
- * Class gerant l'utilisateur
+ * Class gérant l'utilisateur
  */
 public class User {
 
@@ -26,7 +26,7 @@ public class User {
     }
 
     /**
-     * getteur userLongitude
+     * Getter userLongitude
      * @return double
      */
     public double getUserLongitude() {
@@ -34,7 +34,7 @@ public class User {
     }
 
     /**
-     * getteur userLatitude
+     * Getter userLatitude
      * @return double
      */
     public double getUserLatitude() {
@@ -42,7 +42,7 @@ public class User {
     }
 
     /**
-     * genere un random longitude entre les limites
+     * Génère un random longitude entre les limites
      */
     public void getLongitudeRandom(){
         Random r = new Random();
@@ -50,7 +50,7 @@ public class User {
     }
 
     /**
-     * genere un random latitude entre les limites
+     * Génère un random latitude entre les limites
      */
     public void getLatitudeRandom(){
         Random r = new Random();

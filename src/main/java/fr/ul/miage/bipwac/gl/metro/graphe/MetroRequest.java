@@ -3,6 +3,7 @@ package fr.ul.miage.bipwac.gl.metro.graphe;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import com.google.gson.Gson;
@@ -28,7 +29,7 @@ public class MetroRequest {
 		URL filePath = MetroRequest.class.getResource("/" + this.fileName);
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new InputStreamReader(filePath.openConnection().getInputStream()));
+			br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(filePath).openConnection().getInputStream()));
 			for (String line = br.readLine(); line != null; line = br.readLine()) {
 				result += line + "\n";
 			}
@@ -36,7 +37,7 @@ public class MetroRequest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		result = result.substring(4); // On enlève null
+		result = Objects.requireNonNull(result).substring(4); // On enlève null
 
 		// Set up de l'objet
 		MetroParisien res = null;

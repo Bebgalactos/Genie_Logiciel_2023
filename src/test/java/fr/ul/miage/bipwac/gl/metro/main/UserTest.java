@@ -1,10 +1,8 @@
 package fr.ul.miage.bipwac.gl.metro.main;
 
-import fr.ul.miage.bipwac.gl.metro.graphe.Edge;
-import fr.ul.miage.bipwac.gl.metro.graphe.MetroParisien;
-import fr.ul.miage.bipwac.gl.metro.graphe.Node;
 import fr.ul.miage.bipwac.gl.metro.graphe.User;
-import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 
 import static org.junit.Assert.*;
@@ -12,19 +10,23 @@ import static org.junit.Assert.*;
 
 public class UserTest {
 
-    @Test
-    public void rangeLatitude(){
+    @ParameterizedTest
+    @CsvSource({
+            "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
+    })
+    public void rangeLatitude(String ignore) {
         User u = new User();
-        assertTrue(u.getUserLatitude()>=48.815573 && u.getUserLatitude()<=48.902145);
+        assertTrue(u.getUserLatitude() >= 48.815573 && u.getUserLatitude() <= 48.902145);
     }
 
-    @Test
-    public void rangeLongitude(){
+    @ParameterizedTest
+    @CsvSource({
+            "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
+    })
+    public void rangeLongitude(String ignore) {
         User u = new User();
-        assertTrue(u.getUserLongitude()>=2.225828 && u.getUserLongitude()<=2.469920);
+        assertTrue(u.getUserLongitude() >= 2.225828 && u.getUserLongitude() <= 2.469920);
     }
-
-
 
 
 }

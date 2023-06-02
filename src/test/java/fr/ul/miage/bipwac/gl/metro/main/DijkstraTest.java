@@ -296,7 +296,6 @@ public class DijkstraTest {
                 )
         );
         List<Long> actual = (new Dijkstra()).findShortestPath(startPoint, endPoint, metro);
-        System.out.println(actual);
         assertArrayEquals(
                 expected.toArray(),
                 actual.toArray()
