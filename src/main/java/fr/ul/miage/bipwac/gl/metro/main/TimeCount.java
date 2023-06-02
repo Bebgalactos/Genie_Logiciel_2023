@@ -15,7 +15,7 @@ public class TimeCount {
     // Fonctions
 
     /**
-     * Fonction retournant le temps relatif aux
+     * Fonction retournant le temps relatif aux trajets
      * @param metro
      * @return
      */

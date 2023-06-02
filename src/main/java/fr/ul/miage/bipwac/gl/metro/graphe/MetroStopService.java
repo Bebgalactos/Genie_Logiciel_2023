@@ -28,12 +28,6 @@ public class MetroStopService {
         }
     }
 
-    private MetroParisien parseJson(String path) throws FileNotFoundException {
-        Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader(path));
-        return gson.fromJson(reader, MetroParisien.class);
-    }
-
     private Optional<Node> findNearestMetroStop(MetroParisien metroParisien, double latitude, double longitude, double radiusInKm) {
         return metroParisien.getNodes().stream()
                 .filter(node -> distanceBetweenPoints(latitude, longitude, node.getLatitude(), node.getLongitude()) <= radiusInKm)

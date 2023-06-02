@@ -16,10 +16,10 @@ public class Dijkstra {
         Map<Long, List<Edge>> graph = this.changeStructure(metro);
 
         // Initialisations des variables de parcours
-        Map<Long, Long> distances = distanceInitialize(graph.keySet());
+        Map<Long, Double> distances = distanceInitialize(graph.keySet());
         Map<Long, Long> previous = previousInitialize(graph.keySet());
-        PriorityQueue<Long> queue = new PriorityQueue<>(Comparator.comparingLong(distances::get));
-        distances.put(source, Long.parseLong(String.valueOf(0)));
+        PriorityQueue<Long> queue = new PriorityQueue<>(Comparator.comparingDouble(distances::get));
+        distances.put(source, Double.parseDouble(String.valueOf(0)));
         queue.offer(source);
 
         while (!queue.isEmpty()) {
@@ -45,7 +45,7 @@ public class Dijkstra {
                     nextNode = neighbor.getSource();
                 }
 
-                Long distanceToNextNode = distances.get(current) + 1; // Assuming edge weight is 1
+                Double distanceToNextNode = distances.get(current) + 1.5; // Assuming edge weight is 1
 
                 if (distanceToNextNode < distances.get(nextNode)) {
                     distances.put(nextNode, distanceToNextNode);
@@ -92,12 +92,12 @@ public class Dijkstra {
      * @param graphKeySet clés du graphe transformé en entrée
      * @return la liste des distances au point départ
      */
-    public Map<Long, Long> distanceInitialize(Set<Long> graphKeySet) {
-        Map<Long, Long> distances = new HashMap<>();
+    public Map<Long, Double> distanceInitialize(Set<Long> graphKeySet) {
+        Map<Long, Double> distances = new HashMap<>();
 
         // Initialize distances and previous nodes
         for (Long node : graphKeySet) {
-            distances.put(node, Long.MAX_VALUE);
+            distances.put(node, Double.MAX_VALUE);
         }
         return distances;
     }

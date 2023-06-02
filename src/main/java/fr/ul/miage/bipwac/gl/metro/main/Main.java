@@ -17,10 +17,11 @@ public class Main {
         // Obtiens le graphe du métro
         MetroParisien metroParisien = metro.getMetroParisien();
 
-
-        // Utilise Dijkstra pour trouver le chemin optimal
+        // Initialisation du point de départ et d'arrivé
         Long sourceNodeId = Long.parseLong(String.valueOf(264495553)); // ID du nœud source
         Long destinationNodeId = Long.parseLong(String.valueOf(244494486)); // ID du nœud destination
+
+        // Utilise Dijkstra pour trouver le chemin optimal
         List<Long> shortestPath = (new Dijkstra()).findShortestPath(sourceNodeId, destinationNodeId, metroParisien);
 
         // Affiche le chemin optimal
