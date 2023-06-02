@@ -4,9 +4,7 @@ import fr.ul.miage.bipwac.gl.metro.graphe.Dijkstra;
 import fr.ul.miage.bipwac.gl.metro.graphe.Edge;
 import fr.ul.miage.bipwac.gl.metro.graphe.MetroParisien;
 import fr.ul.miage.bipwac.gl.metro.graphe.Node;
-import org.codehaus.plexus.util.LineOrientedInterpolatingReader;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.util.*;
 

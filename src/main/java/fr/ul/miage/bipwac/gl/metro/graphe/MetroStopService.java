@@ -11,12 +11,9 @@ public class MetroStopService {
 
     /**
      * Recherche la station de métro la plus proche dans un radius de 1 km et augmente jusqu'à 5km si aucune trouvée
-     * @throws FileNotFoundException if file not found
      */
-    public void nearestMetro(User user) throws FileNotFoundException {
+    public void nearestMetro(User user, MetroParisien metroParisien) {
         double radius = 1.0;
-        String JSON_PATH = "C:\\Users\\NATHAN\\OneDrive\\Documents\\Cours\\M1_2\\GL\\Genie_Logiciel_2023\\src\\main\\resources\\graph.json";
-        MetroParisien metroParisien = parseJson(JSON_PATH);
 
         Optional<Node> nearestMetroStop = Optional.empty();
         while (radius <= 5.0 && nearestMetroStop.isEmpty()) {

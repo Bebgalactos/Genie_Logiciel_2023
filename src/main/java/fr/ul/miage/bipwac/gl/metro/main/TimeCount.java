@@ -13,6 +13,12 @@ public class TimeCount {
     public static final Double averageTransitionEntryTime = 5.0; // Temps moyen de changements et de première entrée
 
     // Fonctions
+
+    /**
+     * Fonction retournant le temps relatif aux
+     * @param metro
+     * @return
+     */
     public Double getTimeInMinutes(MetroParisien metro) {
         // Variables
         double time = 0.0;
