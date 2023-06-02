@@ -6,12 +6,7 @@ import fr.ul.miage.bipwac.gl.metro.graphe.Node;
 import fr.ul.miage.bipwac.gl.metro.graphe.User;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import static fr.ul.miage.bipwac.gl.metro.graphe.MetroAccident.removeEdgeAccident;
-import static fr.ul.miage.bipwac.gl.metro.graphe.MetroAccident.removeNodeAccident;
 import static org.junit.Assert.*;
 
 
