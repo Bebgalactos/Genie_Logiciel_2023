@@ -16,8 +16,8 @@ public class TimeCount {
 
     /**
      * Fonction retournant le temps relatif aux trajets
-     * @param metro
-     * @return
+     * @param metro plan metro parisien
+     * @return temps en minute
      */
     public Double getTimeInMinutes(MetroParisien metro) {
         // Variables
@@ -34,7 +34,7 @@ public class TimeCount {
         }
 
         // Calcul du nombre de changements de ligne
-        List<String> listDifferentLines = new ArrayList<String>();
+        List<String> listDifferentLines = new ArrayList<>();
         for(Edge edge : metro.getEdges()) {
             if(!listDifferentLines.contains(edge.getLine())) {
                 listDifferentLines.add(edge.getLine());
@@ -48,6 +48,11 @@ public class TimeCount {
         return time;
     }
 
+    /**
+     * Verifie qu'un chemin existe depuis tous les points
+     * @param metro plan du metro
+     * @return false si un point n'a pas de chemin, true sinon
+     */
     private boolean verifyCoherence(MetroParisien metro) {
         List<Node> nodes = metro.getNodes();
         for(Node node : nodes) {
@@ -63,7 +68,13 @@ public class TimeCount {
         return true;
     }
 
-    // Algorithme de recherche en largeur d'abord simplifié étant donné la structure des données (une ligne droite du départ à l'arrivée)
+    /**
+     * Algorithme de recherche en largeur d'abord simplifié étant donné la structure des données (une ligne droite du départ à l'arrivée)
+     * @param metro Plan metro parisien
+     * @param startNodeId node de depart
+     * @param targetNodeId node rechercher
+     * @return true si chemin possible
+     */
     public boolean isReachable(MetroParisien metro, Long startNodeId, Long targetNodeId) {
         // Vérification des nœuds de départ et d'arrivée
         Node startNode = getNodeById(metro, startNodeId, startNodeId).get(0);
@@ -82,7 +93,7 @@ public class TimeCount {
         while (!stack.isEmpty()) {
             Node currentNode = stack.pop();
 
-            if (currentNode.getId() == targetNodeId) {
+            if (Objects.equals(currentNode.getId(), targetNodeId)) {
                 return true; // Le nœud cible a été trouvé
             }
 
@@ -105,6 +116,13 @@ public class TimeCount {
         return false; // Le nœud cible n'a pas été trouvé
     }
 
+    /**
+     * recherche un chemin depuis un id d'un node
+     * @param metro Plan metro parisien
+     * @param nodeTargetId node recherché
+     * @param nodeSourceId node de depart
+     * @return liste de node (chemin)
+     */
     private List<Node> getNodeById(MetroParisien metro, long nodeTargetId, long nodeSourceId) {
         List<Node> nodes = new ArrayList<>();
         for (Node node : metro.getNodes()) {
@@ -115,6 +133,12 @@ public class TimeCount {
         return nodes;
     }
 
+    /**
+     * Recherche les arretes d'un point donné
+     * @param metro plan metro
+     * @param nodeId node souhaité
+     * @return liste d'arrete
+     */
     private List<Edge> getAdjacentEdges(MetroParisien metro, long nodeId) {
         List<Edge> edges = new ArrayList<>();
         for (Edge edge : metro.getEdges()) {
