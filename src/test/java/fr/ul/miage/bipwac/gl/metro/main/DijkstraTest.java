@@ -4,8 +4,9 @@ import fr.ul.miage.bipwac.gl.metro.graphe.Dijkstra;
 import fr.ul.miage.bipwac.gl.metro.graphe.Edge;
 import fr.ul.miage.bipwac.gl.metro.graphe.MetroParisien;
 import fr.ul.miage.bipwac.gl.metro.graphe.Node;
+import org.codehaus.plexus.util.LineOrientedInterpolatingReader;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.util.*;
 
@@ -13,10 +14,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DijkstraTest {
 
-    public static MetroParisien metro;
 
-    @BeforeAll
-    public void setUp() {
+    @Test
+    public void testDijkstraChangeStructure() {
         // Variables
         String line1 = "ligne1";
         String line2 = "ligne2";
@@ -50,20 +50,11 @@ public class DijkstraTest {
         MetroParisien metro = new MetroParisien();
         metro.setNodes(nodes);
         metro.setEdges(edges);
-        this.metro = metro;
-    }
-
-    @Test
-    public void testDijkstraChangeStructure() {
         /*
         On obtient le trajet :
             1 -------ligne1------- 2 -------ligne1------- 3 -------ligne2------- 4
         Soit Un passage dans 4 stations et 2 lignes différentes
          */
-        MetroParisien metro = this.metro;
-        Edge edge1 = metro.getEdges().get(0);
-        Edge edge2 = metro.getEdges().get(1);
-        Edge edge3 = metro.getEdges().get(2);
         Map<Long, List<Edge>> expected = new HashMap<>(){{
             put(Long.parseLong("1"), (new ArrayList<>(Arrays.asList(edge1))));
             put(Long.parseLong("2"), new ArrayList<>(Arrays.asList(edge1, edge2)));
@@ -129,8 +120,18 @@ public class DijkstraTest {
          */
         Long startPoint = node1.getId();
         Long endPoint = node4.getId();
-        List<Long> expected = new ArrayList<Long>();
+        List<Long> expected = new ArrayList<Long>(
+            Arrays.asList(
+                    Long.parseLong("1"),
+                    Long.parseLong("2"),
+                    Long.parseLong("3"),
+                    Long.parseLong("4")
+            )
+        );
         List<Long> actual = (new Dijkstra()).findShortestPath(startPoint, endPoint, metro);
+        assertArrayEquals(
+                expected.stream().toArray(),
+                actual.stream().toArray()
+        );
     }
-
 }
